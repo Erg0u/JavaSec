@@ -1,4 +1,4 @@
-package run.ergou.rmi.remoteobject;
+package run.ergou.rmi.customclass;
 
 import java.io.Serializable;
 

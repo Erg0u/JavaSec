@@ -1,4 +1,6 @@
-package run.ergou.rmi.remoteobject;
+package run.ergou.rmi.interfaces;
+
+import run.ergou.rmi.customclass.User;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
