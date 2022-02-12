@@ -15,6 +15,7 @@
             <version>3.2.1</version>
         </dependency>
 
+        <!--LDAP Server 提供内存目录服务-->
         <dependency>
             <groupId>com.unboundid</groupId>
             <artifactId>unboundid-ldapsdk</artifactId>
@@ -32,6 +33,7 @@
             <version>2.14.1</version>
         </dependency>
 
+        <!--JNDI高版本限制绕过-加载本地类-->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jasper-el</artifactId>

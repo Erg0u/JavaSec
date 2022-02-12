@@ -8,6 +8,7 @@ import java.util.List;
 
 // The Remote interface serves to identify interfaces whose methods may be invoked from a non-local virtual machine.
 // Any object that is a remote object must directly or indirectly implement this interface.
+// Remote接口用于标记方法允许远程调用
 public interface IUserList extends Remote {
     // 参数为Object
     User getUser(Object obj) throws RemoteException;

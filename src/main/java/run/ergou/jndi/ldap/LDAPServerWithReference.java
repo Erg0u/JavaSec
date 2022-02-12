@@ -18,6 +18,7 @@ public class LDAPServerWithReference {
     private final static String baseDN = "dc=ergou,dc=run";
 
     public static void main(String[] args) throws Exception {
+        // 内存目录服务
         InMemoryDirectoryServerConfig config = new InMemoryDirectoryServerConfig(baseDN);
         config.setListenerConfigs(new InMemoryListenerConfig(
                 "listenName",
@@ -27,12 +28,14 @@ public class LDAPServerWithReference {
                 SocketFactory.getDefault(),
                 (SSLSocketFactory) SSLSocketFactory.getDefault()
         ));
+        // 操作拦截
         config.addInMemoryOperationInterceptor(new OperationInterceptor());
         InMemoryDirectoryServer inMemoryDirectoryServer = new InMemoryDirectoryServer(config);
         inMemoryDirectoryServer.startListening();
     }
 
     private static class OperationInterceptor extends InMemoryOperationInterceptor {
+        // 将结果修改为Reference
         @Override
         public void processSearchResult(InMemoryInterceptedSearchResult result) {
             Entry entry = new Entry(baseDN);
